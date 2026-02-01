@@ -28,3 +28,15 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
+
+tasks.register('standaloneJar', Jar) {
+    archiveClassifier = 'all'
+    manifest {
+        attributes 'Main-Class': 'plantumlgenerator.PlantUmlGenerator'
+    }
+    from sourceSets.main.output
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
