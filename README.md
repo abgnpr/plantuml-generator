@@ -42,7 +42,27 @@ The plugin registers a `generateUml` task. Run it via Gradle:
 By default, the diagram will be generated at:
 `diagrams/<project-name>-uml-diagram.puml` relative to your subproject.
 
-You can customize this in your `build.gradle` if needed (task configuration is standard Gradle).
+## Configuration
+
+The plugin assumes standard Gradle project layout conventions but is fully customizable.
+
+**Defaults:**
+*   **Input:** `src/main/java` (from the `main` source set)
+*   **Output:** `diagrams/<project-name>-uml-diagram.puml`
+
+**Customization Example:**
+
+In your `build.gradle`:
+
+```gradle
+tasks.named('generateUml') {
+    // Change input directory
+    inputDir.set(file('src/my/custom/path'))
+    
+    // Change output file
+    outputFile.set(file('docs/architecture/class-diagram.puml'))
+}
+```
 
 ## Prerequisites: Viewing Diagrams
 
