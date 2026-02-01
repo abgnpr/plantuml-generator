@@ -74,6 +74,40 @@ plantuml-generator <source-path> <output-file>
 plantuml-generator ./src/main/java ./diagrams/my-project.puml
 ```
 
+### Option 3: Maven Plugin
+
+To use this in a Maven project:
+
+1.  **Install the plugin locally:**
+    Run `mvn clean install` inside the `lib` directory of this project.
+
+2.  **Configure your project:**
+    Add the plugin to your project's `pom.xml`:
+
+    ```xml
+    <plugin>
+        <groupId>abgnpr.plantumlgenerator</groupId>
+        <artifactId>plantuml-generator-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <configuration>
+            <inputDir>${project.build.sourceDirectory}</inputDir>
+            <outputFile>${project.basedir}/diagrams/${project.name}-uml-diagram.puml</outputFile>
+        </configuration>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+    ```
+
+3.  **Run the goal:**
+    ```bash
+    mvn plantuml-generator:generate
+    ```
+
 ## Configuration (Gradle Plugin)
 
 The plugin assumes standard Gradle project layout conventions but is fully customizable.
@@ -136,7 +170,8 @@ sudo dnf install plantuml graphviz
 
 ## Development
 
-This project uses Gradle.
+This project uses Gradle (and Maven for the Maven plugin).
 
-*   **Build:** `./gradlew build`
-*   **Test:** `./gradlew test`
+*   **Build (Gradle):** `./gradlew build`
+*   **Test (Gradle):** `./gradlew test`
+*   **Build (Maven):** `mvn clean install` (in `lib/` directory)
