@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id 'java-gradle-plugin'
+}
+
+group = 'abgnpr.plantumlgenerator'
+version = '1.0.0'
+
+gradlePlugin {
+    plugins {
+        plantUmlGenerator {
+            id = 'abgnpr.plantuml-generator'
+            implementationClass = 'plantumlgenerator.gradle.PlantUmlPlugin'
+        }
+    }
+}
+
+repositories {
+    mavenCentral() // <2>
+}
+
+dependencies {
+    implementation libs.javaparser.core
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
