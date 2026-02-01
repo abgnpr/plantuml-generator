@@ -38,9 +38,19 @@ By default, the diagram will be generated at:
 
 You can customize this in your `build.gradle` if needed (task configuration is standard Gradle).
 
-## Prerequisites: Installing PlantUML
+## Prerequisites: Viewing Diagrams
 
-To visualize the generated `.puml` files, you need PlantUML and Graphviz installed on your system.
+**Note:** This plugin generates standard PlantUML (`.puml`) text files. **You do NOT need PlantUML installed to run this plugin or generate the files.**
+
+However, to **visualize** or compile the generated `.puml` files into images (PNG, SVG, etc.), you will need a PlantUML viewer or compiler installed.
+
+### Recommended: VS Code Extension
+
+The easiest way to view the diagrams is to install the **"PlantUML" extension (by Jebbs)** in VS Code. It renders the preview directly in your editor.
+
+### System Installation (Optional)
+
+If you prefer to render images via the command line or other tools, install PlantUML and Graphviz:
 
 ### Linux (Debian/Ubuntu/Mint)
 
