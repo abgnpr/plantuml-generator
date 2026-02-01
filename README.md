@@ -6,11 +6,12 @@ A Gradle plugin that automatically generates [PlantUML](https://plantuml.com/) c
 
 ## Usage
 
-This tool can be used in two ways:
-1.  As a **Gradle Plugin** (recommended for Java projects).
-2.  As a **Standalone CLI Tool** (installed on your system).
+This tool can be used in three ways:
+1.  As a **Gradle Plugin** (recommended for Gradle projects).
+2.  As a **Maven Plugin** (recommended for Maven projects).
+3.  As a **Standalone CLI Tool** (installed on your system).
 
-### Option 1: Gradle Plugin (Recommended)
+### Option 1: Gradle Plugin
 
 #### 1. Include the Build
 
@@ -48,7 +49,42 @@ The plugin registers a `generateUml` task. Run it via Gradle:
 By default, the diagram will be generated at:
 `diagrams/<project-name>-uml-diagram.puml` relative to your subproject.
 
-### Option 2: Standalone CLI (Arch Linux)
+### Option 2: Maven Plugin
+
+To use this in a Maven project:
+
+1.  **Install the plugin locally:**
+    Run `mvn clean install` inside the `lib` directory of this project.
+
+2.  **Configure your project:**
+    Add the plugin to your project's `pom.xml`:
+
+    ```xml
+    <plugin>
+        <groupId>abgnpr.plantumlgenerator</groupId>
+        <artifactId>plantuml-generator-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <configuration>
+            <!-- Optional: Customize input/output -->
+            <inputDir>${project.build.sourceDirectory}</inputDir>
+            <outputFile>${project.basedir}/diagrams/${project.name}-uml-diagram.puml</outputFile>
+        </configuration>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+    ```
+
+3.  **Run the goal:**
+    ```bash
+    mvn plantuml-generator:generate
+    ```
+
+### Option 3: Standalone CLI (Arch Linux)
 
 If you are on Arch Linux, you can install the generator as a system-wide command using the included `PKGBUILD`.
 
@@ -74,49 +110,15 @@ plantuml-generator <source-path> <output-file>
 plantuml-generator ./src/main/java ./diagrams/my-project.puml
 ```
 
-### Option 3: Maven Plugin
+## Configuration
 
-To use this in a Maven project:
-
-1.  **Install the plugin locally:**
-    Run `mvn clean install` inside the `lib` directory of this project.
-
-2.  **Configure your project:**
-    Add the plugin to your project's `pom.xml`:
-
-    ```xml
-    <plugin>
-        <groupId>abgnpr.plantumlgenerator</groupId>
-        <artifactId>plantuml-generator-maven-plugin</artifactId>
-        <version>1.0.0</version>
-        <configuration>
-            <inputDir>${project.build.sourceDirectory}</inputDir>
-            <outputFile>${project.basedir}/diagrams/${project.name}-uml-diagram.puml</outputFile>
-        </configuration>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>generate</goal>
-                </goals>
-            </execution>
-        </executions>
-    </plugin>
-    ```
-
-3.  **Run the goal:**
-    ```bash
-    mvn plantuml-generator:generate
-    ```
-
-## Configuration (Gradle Plugin)
-
-The plugin assumes standard Gradle project layout conventions but is fully customizable.
+The plugin assumes standard project layout conventions but is fully customizable.
 
 **Defaults:**
 *   **Input:** `src/main/java` (from the `main` source set)
 *   **Output:** `diagrams/<project-name>-uml-diagram.puml`
 
-**Customization Example:**
+### Gradle Configuration
 
 In your `build.gradle`:
 
@@ -128,6 +130,17 @@ tasks.named('generateUml') {
     // Change output file
     outputFile.set(file('docs/architecture/class-diagram.puml'))
 }
+```
+
+### Maven Configuration
+
+In your `pom.xml`:
+
+```xml
+<configuration>
+    <inputDir>src/my/custom/path</inputDir>
+    <outputFile>docs/architecture/class-diagram.puml</outputFile>
+</configuration>
 ```
 
 ## Prerequisites: Viewing Diagrams
