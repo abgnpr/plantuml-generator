@@ -6,11 +6,15 @@ A Gradle plugin that automatically generates [PlantUML](https://plantuml.com/) c
 
 ### 1. Include the Build
 
-If you are using this as a composite build (local development), include it in your consumer project's `settings.gradle`:
+To use this plugin locally without publishing it to a repository (e.g., during development), we use Gradle's **Composite Build** feature. This allows the consumer project to "see" and build the plugin directly from source.
+
+Include it in your consumer project's `settings.gradle`:
 
 ```gradle
 includeBuild('../plantuml-generator')
 ```
+
+**How this works:** Gradle scans the included build, finds the plugin definition, and automatically substitutes the plugin dependency with the local version. This means you don't need to publish `abgnpr.plantuml-generator` to Maven Central or the Gradle Plugin Portal to use it!
 
 ### 2. Apply the Plugin
 
