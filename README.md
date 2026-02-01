@@ -1,6 +1,8 @@
-# PlantUML Generator Gradle Plugin
+# PlantUML Generator
 
-A Gradle plugin that automatically generates [PlantUML](https://plantuml.com/) class diagrams from your Java source code. It parses your project's Java files and produces a `.puml` file describing your class structure.
+A versatile tool that automatically generates [PlantUML](https://plantuml.com/) class diagrams from your Java source code. It parses your project's Java files and produces a `.puml` file describing your class structure.
+
+This tool can be integrated into your workflow as a **Gradle Plugin**, a **Maven Plugin**, or used as a **Standalone CLI** application.
 
 ![VS Code Preview](docs/images/preview.png)
 
