@@ -84,6 +84,11 @@ To use this in a Maven project:
     mvn plantuml-generator:generate
     ```
 
+4.  **Output**
+
+    By default, the diagram will be generated at:
+    `diagrams/<project-name>-uml-diagram.puml` relative to your project root.
+
 ### Option 3: Standalone CLI (Arch Linux)
 
 If you are on Arch Linux, you can install the generator as a system-wide command using the included `PKGBUILD`.
