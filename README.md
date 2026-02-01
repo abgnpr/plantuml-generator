@@ -2,6 +2,8 @@
 
 A Gradle plugin that automatically generates [PlantUML](https://plantuml.com/) class diagrams from your Java source code. It parses your project's Java files and produces a `.puml` file describing your class structure.
 
+![VS Code Preview](docs/images/preview.png)
+
 ## Usage
 
 ### 1. Include the Build
