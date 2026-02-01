@@ -6,7 +6,13 @@ A Gradle plugin that automatically generates [PlantUML](https://plantuml.com/) c
 
 ## Usage
 
-### 1. Include the Build
+This tool can be used in two ways:
+1.  As a **Gradle Plugin** (recommended for Java projects).
+2.  As a **Standalone CLI Tool** (installed on your system).
+
+### Option 1: Gradle Plugin (Recommended)
+
+#### 1. Include the Build
 
 To use this plugin locally without publishing it to a repository (e.g., during development), we use Gradle's **Composite Build** feature. This allows the consumer project to "see" and build the plugin directly from source.
 
@@ -18,7 +24,7 @@ includeBuild('../plantuml-generator')
 
 **How this works:** Gradle scans the included build, finds the plugin definition, and automatically substitutes the plugin dependency with the local version. This means you don't need to publish `abgnpr.plantuml-generator` to Maven Central or the Gradle Plugin Portal to use it!
 
-### 2. Apply the Plugin
+#### 2. Apply the Plugin
 
 In your consumer project's `build.gradle` (e.g., `app/build.gradle`), apply the plugin:
 
@@ -29,7 +35,7 @@ plugins {
 }
 ```
 
-### 3. Run the Task
+#### 3. Run the Task
 
 The plugin registers a `generateUml` task. Run it via Gradle:
 
@@ -37,12 +43,38 @@ The plugin registers a `generateUml` task. Run it via Gradle:
 ./gradlew generateUml
 ```
 
-### 4. Output
+#### 4. Output
 
 By default, the diagram will be generated at:
 `diagrams/<project-name>-uml-diagram.puml` relative to your subproject.
 
-## Configuration
+### Option 2: Standalone CLI (Arch Linux)
+
+If you are on Arch Linux, you can install the generator as a system-wide command using the included `PKGBUILD`.
+
+1.  Clone this repository.
+2.  Run `makepkg -si` in the project root.
+
+```bash
+cd plantuml-generator
+makepkg -si
+```
+
+This will compile the project, build a standalone JAR, and install it to `/usr/bin/plantuml-generator`.
+
+**Usage:**
+
+```bash
+plantuml-generator <source-path> <output-file>
+```
+
+**Example:**
+
+```bash
+plantuml-generator ./src/main/java ./diagrams/my-project.puml
+```
+
+## Configuration (Gradle Plugin)
 
 The plugin assumes standard Gradle project layout conventions but is fully customizable.
 
